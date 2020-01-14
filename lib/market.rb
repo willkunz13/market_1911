@@ -54,17 +54,15 @@ class Market
 	end
 
 	def vendors_sell(item, quantity)
-		vendors.each do |vendor|
-			if vendor.inventory.keys.include?(item)
-				if vendor.inventory[item] >= quantity
-					vendor.sell(item, quantity)
-					quantity = 0
-				else
-					quantity_holder = quantity
-					quantity -= vendor.inventory[item]
-					vendor.sell(item, quantity_holder)
-					binding.pry
-				end
+		vendors_with_item = vendors.find_all {|vendor| vendor.inventory.keys.include?(item)}
+		vendors_with_item.each do |vendor|
+			if vendor.inventory[item] >= quantity
+				vendor.sell(item, quantity)
+				quantity = 0
+			else
+				quantity_holder = quantity
+				quantity -= vendor.inventory[item]
+				vendor.sell(item, quantity_holder)
 			end
 		end
 	end
