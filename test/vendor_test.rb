@@ -18,6 +18,7 @@ class VendorTest < Minitest::Test
 
         def test_its_variables
 		empty_hash = {}
-		assert_equal empty_hash, vendor.inventory
-		assert_equal 0, vendor.check_stock(item1)
+		assert_equal empty_hash, @vendor.inventory
+		assert_equal "Rocky Mountain Fresh", @vendor.name
 	end
+end
