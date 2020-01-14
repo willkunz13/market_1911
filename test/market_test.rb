@@ -57,4 +57,16 @@ class MarketTest < Minitest::Test
 		assert_includes @market.vendors_that_sell(@item1), @vendor3
 		assert_includes @market.vendors_that_sell(@item4), @vendor2
 	end
+
+	def test_sorted_item_list
+		@market.add_vendor(@vendor1)
+		@market.add_vendor(@vendor2)
+		@market.add_vendor(@vendor3)
+		assert_equal "Banana Nice Cream", @market.sorted_item_list.first
+		assert_equal "Peach", @market.sorted_item_list[1]
+		assert_equal "Peach-Raspberry Nice Cream", @market.sorted_item_list[2]
+		assert_equal "Tomato", @market.sorted_item_list[3]
+	end
+		
+		
 end
