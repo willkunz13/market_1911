@@ -26,6 +26,10 @@ class VendorTest < Minitest::Test
 		assert_equal 0, @vendor.check_stock(@item1)
 		@vendor.stock(@item1, 30)
 		assert_equal 30, @vendor.check_stock(@item1)
+		@vendor.stock(@item1, 25)
+		assert_equal 55, @vendor.check_stock(@item1)
+		@vendor.stock(@item2, 12)
+		assert_equal 12, @vendor.check_stock(@item2)
 	end
 
 	def test_stock
@@ -33,5 +37,8 @@ class VendorTest < Minitest::Test
 		@vendor.stock(@item1, 30)
 		assert_equal 1, @vendor.inventory.size
 		assert_includes @vendor.inventory.keys, @item1
+		@vendor.stock(@item2, 12)
+		assert_equal 2, @vendor.inventory.size
+		assert_includes @vendor.inventory.values, 12
 	end
 end
