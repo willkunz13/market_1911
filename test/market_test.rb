@@ -49,4 +49,12 @@ class MarketTest < Minitest::Test
 		assert_includes @market.vendor_names, @vendor3.name
 	end
 
+	def test_vendors_that_sell
+		@market.add_vendor(@vendor1)
+		@market.add_vendor(@vendor2)
+		@market.add_vendor(@vendor3)		
+		assert_includes @market.vendors_that_sell(@item1), @vendor1
+		assert_includes @market.vendors_that_sell(@item1), @vendor3
+		assert_includes @market.vendors_that_sell(@item4), @vendor2
+	end
 end
