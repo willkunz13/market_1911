@@ -41,4 +41,15 @@ class VendorTest < Minitest::Test
 		assert_equal 2, @vendor.inventory.size
 		assert_includes @vendor.inventory.values, 12
 	end
+	
+	def test_sell
+		@vendor.stock(@item1, 30)
+		assert_equal 30, @vendor.check_stock(@item1)
+		@vendor.sell(@item1, 25)
+		assert_equal 5, @vendor.check_stock(@item1)
+		@vendor.stock(@item2, 12)
+		assert_equal 12, @vendor.check_stock(@item2)
+		@vendor.sell(@item2, 100)
+		assert_equal 0, @vendor.check_stock(@item2)
+	end
 end
