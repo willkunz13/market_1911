@@ -22,6 +22,15 @@ class Vendor
 			inventory[item] = number
 		end
 	end
+
+	def sell(item, number)
+		if inventory[item] >= number
+			inventory[item] -= number
+		else
+			inventory[item] = 0
+		end
+		nil
+	end 		
 		
 
 end
