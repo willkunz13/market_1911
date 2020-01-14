@@ -7,4 +7,16 @@ class Market
 		@vendors = []
 	end
 
+	def add_vendor(vendor)
+		if vendors.include?(vendor)
+			return
+		else
+			vendors << vendor
+		end
+	end
+
+	def vendor_names
+		vendors.map {|vendor| vendor.name}
+	end
+			
 end
