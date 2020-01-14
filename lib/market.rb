@@ -39,5 +39,33 @@ class Market
 		end
 		totals
 	end
-			
-end
+
+	def sell(item, quantity)
+		if !total_inventory.keys.include?(item)
+			return false
+		else
+			if total_inventory[item] < quantity
+				return false
+			else
+				vendors_sell(item, quantity)
+				return true
+			end
+		end
+	end
+
+	def vendors_sell(item, quantity)
+		vendors.each do |vendor|
+			if vendor.inventory.keys.include?(item)
+				if vendor.inventory[item] >= quantity
+					vendor.sell(item, quantity)
+					quantity = 0
+				else
+					quantity_holder = quantity
+					quantity -= vendor.inventory[item]
+					vendor.sell(item, quantity_holder)
+					binding.pry
+				end
+			end
+		end
+	end
+end	
