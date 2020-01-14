@@ -22,6 +22,13 @@ class Market
 	def vendors_that_sell(item)
 		vendors.find_all {|vendor| vendor.inventory.keys.include?(item)}
 	end
+
+	def sorted_item_list
+		items = []
+		vendors.each {|vendor| items << vendor.inventory.keys}
+		item_names = items.flatten.map {|item| item.name}
+		item_names.uniq.sort
+	end
 		
 			
 end
