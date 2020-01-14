@@ -43,7 +43,8 @@ class MarketTest < Minitest::Test
 	def test_vendor_names
 		@market.add_vendor(@vendor1)
 		@market.add_vendor(@vendor2)
-		@market.add_vendor(@vendor3)		
+		@market.add_vendor(@vendor3)
+		assert_instance_of Array, @market.vendor_names
 		assert_includes @market.vendor_names, @vendor1.name
 		assert_includes @market.vendor_names, @vendor2.name
 		assert_includes @market.vendor_names, @vendor3.name
@@ -52,7 +53,8 @@ class MarketTest < Minitest::Test
 	def test_vendors_that_sell
 		@market.add_vendor(@vendor1)
 		@market.add_vendor(@vendor2)
-		@market.add_vendor(@vendor3)		
+		@market.add_vendor(@vendor3)
+		assert_instance_of Array, @market.vendors_that_sell(@item1)
 		assert_includes @market.vendors_that_sell(@item1), @vendor1
 		assert_includes @market.vendors_that_sell(@item1), @vendor3
 		assert_includes @market.vendors_that_sell(@item4), @vendor2
@@ -62,6 +64,7 @@ class MarketTest < Minitest::Test
 		@market.add_vendor(@vendor1)
 		@market.add_vendor(@vendor2)
 		@market.add_vendor(@vendor3)
+		assert_instance_of Array, @market.sorted_item_list
 		assert_equal "Banana Nice Cream", @market.sorted_item_list.first
 		assert_equal "Peach", @market.sorted_item_list[1]
 		assert_equal "Peach-Raspberry Nice Cream", @market.sorted_item_list[2]
@@ -72,6 +75,7 @@ class MarketTest < Minitest::Test
 		@market.add_vendor(@vendor1)
 		@market.add_vendor(@vendor2)
 		@market.add_vendor(@vendor3)
+		assert_instance_of Hash, @market.total_inventory
 		assert_equal 100, @market.total_inventory[@item1]		
 		assert_equal 7, @market.total_inventory[@item2]		
 		assert_equal 50, @market.total_inventory[@item4]
