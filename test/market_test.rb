@@ -67,6 +67,15 @@ class MarketTest < Minitest::Test
 		assert_equal "Peach-Raspberry Nice Cream", @market.sorted_item_list[2]
 		assert_equal "Tomato", @market.sorted_item_list[3]
 	end
-		
+
+	def test_total_inventory
+		@market.add_vendor(@vendor1)
+		@market.add_vendor(@vendor2)
+		@market.add_vendor(@vendor3)
+		assert_equal 100, @market.total_inventory[@item1]		
+		assert_equal 7, @market.total_inventory[@item2]		
+		assert_equal 50, @market.total_inventory[@item4]
+	end
+
 		
 end
